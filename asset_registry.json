@@ -1,0 +1,25 @@
+{
+  "version": "1.0.0",
+  "last_scan": null,
+  "assets": [],
+  "categories": [
+    "mcp_server",
+    "skill",
+    "cli_config",
+    "automation",
+    "project",
+    "prompt",
+    "hook",
+    "tool",
+    "other"
+  ],
+  "known_claude_paths": {
+    "claude_desktop_config": "~/Library/Application Support/Claude/claude_desktop_config.json",
+    "claude_code_config": "~/.claude",
+    "claude_code_settings": "~/.claude/settings.json",
+    "claude_code_projects": "~/.claude/projects",
+    "claude_code_credentials": "~/.claude/.credentials",
+    "mcp_servers_vscode": "~/Library/Application Support/Code/User/globalStorage/saoudrizwan.claude-dev/settings/cline_mcp_settings.json",
+    "claude_desktop_logs": "~/Library/Logs/Claude"
+  }
+}

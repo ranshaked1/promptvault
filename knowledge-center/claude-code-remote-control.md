@@ -6,7 +6,7 @@
 
 ## Summary
 
-This video walks through the setup and usage of the new Remote Control feature in Claude Code, which allows developers to manage terminal sessions from mobile devices or browsers. The host explains how this feature acts as a secure mirror for monitoring long-running tasks and demonstrates how to MacGyver it into a personalized AI assistant using specific file configurations.
+Claude Code's Remote Control feature lets you mirror your desktop terminal session to a mobile device or browser. It's not a standalone remote IDE — it's a secure view into an active Claude Code session, useful for monitoring long-running tasks on the go. The video also shows a creative use case: combining Remote Control with soul files, memory, and skills to turn Claude into a pseudo personal assistant you can chat with from your phone.
 
 ## Key Concepts
 
@@ -53,6 +53,21 @@ I want to talk to you about anything from my business to what's bothering me.
 - **Session Management:** The remote session closes automatically when you shut down the primary Claude instance on your desktop (3:01)
 - **Buggy QR Scanning:** If the scan doesn't take you directly to the active session, refresh your browser or chat on the mobile app to confirm it is active (2:43)
 
+## Action Items
+
+- [ ] Run `claude update` and try `claude /remote control` to test the feature
+- [ ] Create a `soul.md` file in a project folder to define Claude's personality for personal assistant use
+- [ ] Create a memory file with personal preferences (communication style, interests, context)
+- [ ] Set up a `claude.md` with instructions pointing to the soul and memory files
+- [ ] Try importing skills (e.g., PowerPoint, CSV) into a remote session for on-the-go productivity
+- [ ] Test the mobile workflow: start a long-running task on desktop, monitor/approve from phone
+
+## Related Concepts
+
+- **Soul files** — personality configuration for Claude, worth exploring for other projects
+- **Skills** — reusable capabilities that can be imported into Claude Code sessions
+- **Accept edits mode** — a permission mode where Claude proposes changes and you approve, pairs well with remote monitoring
+
 ## Tags
 
-claude-code, remote-control, anthropic, ai-assistant, terminal, productivity, developer-tools
+claude-code, remote-control, anthropic, ai-assistant, terminal, productivity, developer-tools, soul-files, skills

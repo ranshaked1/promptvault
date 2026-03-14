@@ -62,8 +62,8 @@ MCP_PATTERNS = ["mcp-server-", "@modelcontextprotocol", "mcp_server_"]
 
 # Directories to search for scattered projects
 PROJECT_SEARCH_DIRS = [
-    "~/Projects", "~/Documents", "~/Developer", "~/Desktop",
-    "~/repos", "~/code", "~/src", "~/github", "~/work",
+    "~/Claude/projects", "~/Projects", "~/Documents", "~/Developer",
+    "~/Desktop", "~/repos", "~/code", "~/src", "~/github", "~/work",
 ]
 
 
@@ -176,6 +176,22 @@ def scan_dot_claude():
                 str(rel), item, "file",
                 detect_category(str(item), item.name),
                 "dot_claude",
+            ))
+    return results
+
+
+def scan_claude_projects_folder():
+    """Scan ~/Claude/projects/ — everything here is a project by definition."""
+    projects_dir = HOME / "Claude" / "projects"
+    if not projects_dir.exists():
+        return []
+
+    results = []
+    for item in projects_dir.iterdir():
+        if item.is_dir() and not item.name.startswith("."):
+            results.append(_asset(
+                item.name, item, "project_directory", "project",
+                "claude_projects_folder",
             ))
     return results
 
@@ -383,6 +399,7 @@ def run_full_scan(output_file=None):
         ("Known Claude paths", scan_known_paths),
         ("Claude Desktop MCP servers", scan_claude_desktop_mcp),
         ("~/.claude/ deep scan", scan_dot_claude),
+        ("~/Claude/projects/", scan_claude_projects_folder),
         ("Home directory projects", scan_home_for_claude_projects),
         ("npm global packages", scan_npm_global),
         ("pip packages", scan_pip),
@@ -426,6 +443,14 @@ def run_full_scan(output_file=None):
     for cat, count in sorted(cats.items(), key=lambda x: -x[1]):
         print(f"    {cat:20s} {count}")
     print("=" * 60)
+
+    # Auto-regenerate catalog after scan
+    try:
+        from catalog import generate_catalog
+        print()
+        generate_catalog()
+    except Exception as e:
+        print(f"\n  Note: Could not auto-generate catalog: {e}")
 
     return registry
 

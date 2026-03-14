@@ -1,0 +1,8 @@
+{
+  "_comment": "User-editable descriptions for Claude assets. Add a key matching the asset name or path, with a one-sentence description. These persist across scans and are used to generate MY_ASSETS.md.",
+  "ai-cost-tracker": "Tracks and reports costs across AI API usage (OpenAI, Anthropic, etc.).",
+  "cal-daily-report": "Generates daily summary reports from Google Calendar events.",
+  "VS Temp folder": "Temporary working folder for VS Code / Cursor experiments.",
+  "youtube_english_filter.py": "Searches YouTube for English-language videos on a given topic using the Data API.",
+  "promptvault": "Centralized hub and management system for all Claude-related assets."
+}

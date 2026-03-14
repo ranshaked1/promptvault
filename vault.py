@@ -11,6 +11,8 @@ Usage:
     python vault.py migrate execute   # Execute migration
     python vault.py migrate verify    # Verify migration
     python vault.py tree              # Show ~/Claude/ folder tree
+    python vault.py catalog           # Regenerate MY_ASSETS.md
+    python vault.py describe <name> <desc>  # Add/update a description
 """
 
 import json
@@ -189,6 +191,26 @@ def _print_tree(directory, prefix="", max_depth=3, depth=0):
             _print_tree(entry, prefix=prefix + ext, max_depth=max_depth, depth=depth + 1)
 
 
+def cmd_catalog():
+    """Regenerate MY_ASSETS.md."""
+    catalog_script = VAULT_DIR / "catalog.py"
+    subprocess.run([sys.executable, str(catalog_script)])
+
+
+def cmd_describe(name, description):
+    """Add or update a description for an asset."""
+    desc_file = VAULT_DIR / "descriptions.json"
+    if desc_file.exists():
+        data = json.loads(desc_file.read_text())
+    else:
+        data = {"_comment": "User-editable descriptions for Claude assets."}
+
+    data[name] = description
+    desc_file.write_text(json.dumps(data, indent=2) + "\n")
+    print(f"  Updated description for '{name}'")
+    print(f"  Run 'python vault.py catalog' to regenerate MY_ASSETS.md")
+
+
 def cmd_migrate(subcmd):
     """Proxy to migrate.py."""
     migrate_script = VAULT_DIR / "migrate.py"
@@ -226,6 +248,13 @@ def main():
         cmd_status()
     elif cmd == "tree":
         cmd_tree()
+    elif cmd == "catalog":
+        cmd_catalog()
+    elif cmd == "describe":
+        if len(sys.argv) < 4:
+            print("  Usage: python vault.py describe <asset-name> <description>")
+            sys.exit(1)
+        cmd_describe(sys.argv[2], " ".join(sys.argv[3:]))
     elif cmd == "migrate":
         subcmd = sys.argv[2] if len(sys.argv) > 2 else "plan"
         cmd_migrate(subcmd)

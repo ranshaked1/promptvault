@@ -1,0 +1,11 @@
+{
+  "artboards": [
+    { "file": "Main.dc.html", "x": 0, "y": 0, "w": 390, "h": 844 },
+    { "file": "DayDetail.dc.html", "x": 500, "y": 0, "w": 390, "h": 844 },
+    { "file": "Illustration.dc.html", "x": 1000, "y": 0, "w": 900, "h": 640 }
+  ],
+  "annotations": [
+    { "id": "sample-data", "x": 0, "y": -150, "w": 520, "text": "All weather values are realistic samples for late-August Tel Aviv, not a live feed — swap them for real API data before shipping. Weekend shown as Fri 28 / Sat 29 Aug (Israeli weekend)." }
+  ],
+  "launch": { "view": "canvas" }
+}
